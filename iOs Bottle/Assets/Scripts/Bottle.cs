@@ -2,11 +2,17 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
 public class Bottle : MonoBehaviour
 {
+    //Reference variable if the Games isPaused;
+    public static bool GameIsPaused;
 
-	//Score System reference..
-	//public ScoreSystem score;
+    //Reference of the SpecialCredits Panel
+    public GameObject SpecialPanel;
+
+    //Reference of the PausePanel
+    public GameObject PausePanel; 
 
 	public GameObject bottleWater; 
 	//..rigibody para mover la botella.
@@ -37,6 +43,11 @@ public class Bottle : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+        //Initial value, the game is not paused
+        GameIsPaused = false;
+
+        PausePanel.SetActive(false);
+        SpecialPanel.SetActive(false);
 
 		initial = Time.time;
 		
@@ -133,7 +144,7 @@ public class Bottle : MonoBehaviour
 	//..Restarting level..
 	void Restart()
 	{
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 
 	void bottleFalling()
@@ -144,4 +155,10 @@ public class Bottle : MonoBehaviour
 			Restart (); 
 		}
 	}
+
+    //Quitting Game
+    public void QuittingGame ()
+    {
+        Application.Quit();
+    }
 }
